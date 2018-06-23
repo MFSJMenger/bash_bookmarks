@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# bookmarks
+lib/*.json
+lib/*.txt
