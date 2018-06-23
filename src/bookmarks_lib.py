@@ -5,6 +5,9 @@ from functools import wraps
 filepath = os.path.abspath(__file__)
 main     = os.path.dirname(os.path.dirname(filepath))
 
+if not os.isdir(os.path.join(main,'lib')):
+    os.mkdir(os.path.join(main,'lib'))
+
 bookmark_file   = os.path.join(main,'lib/bookmarks.json')
 bookmark_names  = os.path.join(main,'lib/bookmarks.txt')
 

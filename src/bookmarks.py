@@ -5,6 +5,7 @@ from bookmarks_lib import HandleBookmarkCases
 from bookmarks_colors import bcolors
 
 
+
 @HandleBookmarkCases()
 def get_bookmark(bookmark,*args, **kwargs):
 
