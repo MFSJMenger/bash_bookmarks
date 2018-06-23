@@ -1,0 +1,27 @@
+.TH bookmarks 1 "JANUARY 2018" "Bash Bookmarks"
+.SH NAME
+BOOKMARKS
+.SH SYNOPSIS
+.B bookmarks.py -b BOOKMARK [-o OPTION ]
+.SH DESCRIPTION
+enables the use of bookmarks in your bash by adding
+
+.B source $BOOKMARKS_ROOT/bin/bookmarks.sh
+to your .bashrc
+.SH OPTION
+.IP set:
+define current working directory as new directory with name
+.B BOOKMARK
+.IP get:
+if name
+.B BOOKMARK
+is already set get path of that bookmark
+.IP list:
+lists all defined bookmarks and corresponding pathes
+.IP remove:
+if bookmark is set remove it from the list of bookmarks
+.SH FILES
+.I $BOOKMARKS_ROOT/lib/bookmarks.json
+This is the file were all bookmarks are saved
+
+

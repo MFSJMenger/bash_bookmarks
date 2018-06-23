@@ -1,0 +1,15 @@
+
+_BOOKMARK_PATH()
+{
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    if [ -f $BOOKMARKS_ROOT/lib/bookmarks.txt ]; then
+        local val=`cat $BOOKMARKS_ROOT/lib/bookmarks.txt`
+    else
+        local val=""
+    fi
+    COMPREPLY=( $(compgen -W "$val" -- $cur) )
+}
+
+complete -F _BOOKMARK_PATH cdb
+complete -F _BOOKMARK_PATH pb
+complete -F _BOOKMARK_PATH rmb
