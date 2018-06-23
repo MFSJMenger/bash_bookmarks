@@ -3,6 +3,7 @@ BASH_BOOKMARKS
 
 Adds basic functionallity for bookmarking
 uses both bash and python to configer everything
+It works with both python2 and python3
 
 USAGE
 -----
@@ -31,7 +32,10 @@ all commands can be configured using the `bookmarks_config.ini` file. e.g.
     
     cd = cd_bookmark
 
+afterwards run python setup.py
+
 will rename setb to set_bookmark and cdb to cd_bookmark
+
 
 INSTALL
 -------
