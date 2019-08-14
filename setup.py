@@ -10,8 +10,13 @@ except:
     import ConfigParser as configparser
 
 bin_bookmarks = Template("""
-. $$BOOKMARKS_ROOT/src/bookmarks.sh
-. $$BOOKMARKS_ROOT/complete/bookmarks
+export BOOKMARKS_LIB=$bookmarks_lib
+
+BOOKMARKS_ROOT=$$(dirname "$$( cd "$$( dirname "$${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )")
+export BOOKMARKS_ROOT
+
+source $$BOOKMARKS_ROOT/src/bookmarks.sh
+source $$BOOKMARKS_ROOT/complete/bookmarks.sh
 
 alias $bookmarks_set="BOOKMARK_SET"     # set bookmark
 alias $bookmarks_cd="BOOKMARK_CD"       # cd bookmark
@@ -25,8 +30,8 @@ complete_bookmarks = Template("""
 _BOOKMARK_PATH()
 {
     local cur=$${COMP_WORDS[COMP_CWORD]}
-    if [ -f $$BOOKMARKS_ROOT/lib/bookmarks.txt ]; then
-        local val=`cat $$BOOKMARKS_ROOT/lib/bookmarks.txt`
+    if [ -f $$BOOKMARKS_LIB/bookmarks.txt ]; then
+        local val=`cat $$BOOKMARKS_LIB/bookmarks.txt`
     else
         local val=""
     fi
@@ -61,6 +66,7 @@ def read_bookmark_config(fileName):
                 'list' : 'listb',
                 'rm' : 'rmb',
                 'path' : 'pb',
+                'lib' : '~/.bookmarks',
                 },
             'color' : {
                 'header' : '\\033[95m',
@@ -91,14 +97,14 @@ def configer_bookmarks_dct(dct):
     outdct = {}
     for entry in dct:
         for key in dct[entry]:
-            outdct[entry+"_"+key] = dct[entry][key]
+            outdct[entry + "_" + key] = dct[entry][key]
 
     return outdct
 
 def config_bookmarks(config_file):
     dct = configer_bookmarks_dct(read_bookmark_config(config_file))
     writeFile('bin/bookmarks.sh', bin_bookmarks.substitute(dct))
-    writeFile('complete/bookmarks', complete_bookmarks.substitute(dct))
+    writeFile('complete/bookmarks.sh', complete_bookmarks.substitute(dct))
     writeFile('src/bookmarks_colors.py', src_bookmarks_colors.substitute(dct))
 
 config_bookmarks('bookmarks_config.ini')

@@ -1,6 +1,11 @@
 
-. $BOOKMARKS_ROOT/src/bookmarks.sh
-. $BOOKMARKS_ROOT/complete/bookmarks
+export BOOKMARKS_LIB=~/.bookmarks
+
+BOOKMARKS_ROOT=$(dirname "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )")
+export BOOKMARKS_ROOT
+
+source $BOOKMARKS_ROOT/src/bookmarks.sh
+source $BOOKMARKS_ROOT/complete/bookmarks.sh
 
 alias setb="BOOKMARK_SET"     # set bookmark
 alias cdb="BOOKMARK_CD"       # cd bookmark

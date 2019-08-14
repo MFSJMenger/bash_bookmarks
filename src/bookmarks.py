@@ -40,14 +40,14 @@ def list_bookmarks(bookmark,*args, **kwargs):
 
     bookmarks = kwargs['bookmarks']
     print(bcolors.FAIL)
-    print(" bookmark  | path ")
-    print(" ------------------------------------------- "+bcolors.ENDC)
+    print("            bookmark | path ")
+    print(" ----------------------------------------------------- "+bcolors.ENDC)
     for key, value in bookmarks.items():
         if kwargs['typ'] in ['alias','bookmark']:
             key_value = value
         elif kwargs['typ'] in ['todo']:
             key_value = value[0]
-        print("%s %9s %s|%s %s %s" % (
+        print("%s %19s %s|%s %s %s" % (
             bcolors.BOLD+bcolors.HEADER,key,bcolors.ENDC,
             bcolors.HEADER,key_value,bcolors.ENDC))
 

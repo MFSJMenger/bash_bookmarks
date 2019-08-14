@@ -2,20 +2,21 @@ import os
 import json
 from functools import wraps
 
-filepath = os.path.abspath(__file__)
-main     = os.path.dirname(os.path.dirname(filepath))
+if os.environ.get("BOOKMARKS_LIB", None) is None:
+    filepath = os.path.abspath(__file__)
+    main     = os.path.dirname(os.path.dirname(os.path.dirname(filepath)))
+    main = os.path.join(main, "lib")
+else:
+    main = os.environ.get("BOOKMARKS_LIB")
 
-if not os.path.isdir(os.path.join(main,'lib')):
-    os.mkdir(os.path.join(main,'lib'))
+bookmark_file   = os.path.join(main,'bookmarks.json')
+bookmark_names  = os.path.join(main,'bookmarks.txt')
 
-bookmark_file   = os.path.join(main,'lib/bookmarks.json')
-bookmark_names  = os.path.join(main,'lib/bookmarks.txt')
+alias_file   = os.path.join(main,'alias.json')
+alias_names  = os.path.join(main,'alias.txt')
 
-alias_file   = os.path.join(main,'lib/alias.json')
-alias_names  = os.path.join(main,'lib/alias.txt')
-
-todo_file   = os.path.join(main,'lib/todo.json')
-todo_names  = os.path.join(main,'lib/todo.txt')
+todo_file   = os.path.join(main,'todo.json')
+todo_names  = os.path.join(main,'todo.txt')
 
 class BasicDecorator(object):
 
