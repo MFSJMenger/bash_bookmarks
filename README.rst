@@ -22,6 +22,10 @@ default names are:
 5. pb - return the name of the bookmark, useful for substitution 
          e.g. "cd `pb [bookmark]`"  is the same as cdb [bookmark]
 
+
+cdb, listb and pb all have autocomplete enabled!
+
+
 Configuration
 ~~~~~~~~~~~~~
 
@@ -30,7 +34,9 @@ all commands can be configured using the `bookmarks_config.ini` file. e.g.
     [bookmarks]
     
     set = set_bookmark
+
     cd = cd_bookmark
+
     lib= ~/.bookmarks
 
 afterwards run python setup.py
